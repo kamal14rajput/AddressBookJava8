@@ -1,15 +1,17 @@
 package com.bridgelabz;
 
+import java.awt.List;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collection;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBook implements IAddressBook {
+	private static AddressBook addressBookImplementation;
 	Scanner scanner = new Scanner(System.in);
-	public ArrayList<Person> personList = new ArrayList<Person>();
-	Map<String, Person> hashmap = new HashMap<>();
+	ArrayList<Person> personList = new ArrayList<Person>();
 	
+	@Override
 	public void add() {
 		System.out.println("Enter your first name");
 		String firstName = scanner.nextLine();
@@ -31,59 +33,50 @@ public class AddressBook implements IAddressBook {
 		System.out.println("Contact added successfully");
 	}
 
-	public void edit() {
-		String enteredName;
-		System.out.println("Enter First name of contact to edit it ");
-		enteredName = scanner.next();
+	public void display() {
 		for (int i = 0; i < personList.size(); i++) {
-			if (personList.get(i).getFirstName().equals(enteredName)) {
-				int check = 0;
-				System.out.println("Person found , what do you want to edit ?");
-				System.out.println(
-						"Enter\n1.First Name\n2.Last Name\n3.Address\n4.city\n5.State\n6.Zip\n7.Phone\n8.Email");
-				check = scanner.nextInt();
-				switch (check) {
-				case 1:
-					System.out.println("Enter new first name");
-					personList.get(i).setFirstName(scanner.next());
-					break;
-				case 2:
-					System.out.println("Enter new last name");
-					personList.get(i).setLastName(scanner.next());
-					break;
-				case 3:
-					System.out.println("Enter new Address");
-					personList.get(i).setAddress(scanner.next());
-					break;
-				case 4:
-					System.out.println("Enter new city");
-					personList.get(i).setCity(scanner.next());
-					break;
-				case 5:
-					System.out.println("Enter new state");
-					personList.get(i).setState(scanner.next());
-					break;
-				case 6:
-					System.out.println("Enter new zip");
-					personList.get(i).setPincode(scanner.next());
-					break;
-				case 7:
-					System.out.println("Enter new phone number");
-					personList.get(i).setMobileNo(scanner.next());
-					break;
-				case 8:
-					System.out.println("Enter new pin");
-					personList.get(i).setPincode(scanner.next());
-					break;
-				default:
-					System.out.println("Invalid Entry");
+			Person person = personList.get(i);
+			System.out.println("FirstName:" + person.getFirstName() + "\n" + "LastName:" + person.getLastName() + "\n"
+					+ "Adress:" + person.getAddress() + "\n" + "City:" + person.getCity() + "\n" + "State:"
+					+ person.getCity() + "Phone-Number:" + person.getMobileNo() + "\n" + "Pin-code:"
+					+ person.getPincode());
+		}
+	}
 
-				}
-			}
+	
+
+	@Override
+	public void edit(String firstName) {
+		for (int i = 0; i < personList.size(); i++) {
+			Person person = personList.get(i);
+
+			System.out.println("Hi " + person.getFirstName() + " please enter your  new Address");
+			String address = scanner.nextLine();
+			person.setAddress(address);
+
+			System.out.println("Hi " + person.getFirstName() + " please enter your  new city");
+			String city = scanner.nextLine();
+			person.setCity(city);
+
+			System.out.println("Hi " + person.getFirstName() + " please enter your  new state");
+			String state = scanner.nextLine();
+			person.setState(state);
+
+			System.out.println("Hi " + person.getFirstName() + " please enter your  new Zip Code");
+			String zip = scanner.nextLine();
+			person.setPincode(zip);
+
+			System.out.println("Hi " + person.getFirstName() + " please enter your  new Phone No");
+			String PhoneNo = scanner.nextLine();
+			person.setMobileNo(PhoneNo);
+
+			System.out.println("Hi " + person.getFirstName() + " you have sucessfully updated");
 		}
 
 	}
 
+	
+	@Override
 	public void delete(String name) {
 		for (int i = 0; i < personList.size(); i++) {
 			if (personList.get(i).getFirstName().equals(name)) {
@@ -93,33 +86,63 @@ public class AddressBook implements IAddressBook {
 		}
 	}
 
+	
+
+	@Override
 	public void addMultiplePerson() {
 		System.out.println("Enter a person Name:");
 		String firstName = scanner.nextLine();
 		for (int i = 0; i < personList.size(); i++) {
 			Person person = personList.get(i);
-		}
-	}
 
-	public void display() {
-		for (int i = 0; i < personList.size(); i++) {
-			Person person = personList.get(i);
-			System.out.println("FirstName:" + person.getFirstName() + "\n" + "LastName:" + person.getLastName() + "\n"
-					+ "Adress:" + person.getAddress() + "\n" + "City:" + person.getCity() + "\n" + "State:"
-					+ person.getCity() + "\n" + "Phone-Number:" + person.getMobileNo() + "\n" + "Pin-code:"
-					+ person.getPincode());
-		}
-	}
-	public void duplicateCheck(String firstName) {
-		for (int k = 0; k < personList.size(); k++) {
-			String contactName = personList.get(k).firstName;
+			
 
-			if (firstName.equals(contactName)) {
-				System.out.println("This Person is Already Present");
-			} else {
-				System.out.println("You can Add this Person");
-				break;
+			if (personList.get(i).getFirstName().equals(firstName)) {
+				System.out.println("Duplicate");
 			}
 		}
 	}
+
+	
+
+	@Override
+	public void searchPersonByName(String firstname) {
+		List listPerson = (List) personList.stream()
+				.filter(person1 -> person1.getFirstName().equalsIgnoreCase(firstname)).collect(Collectors.toList());
+		personList.stream().forEach(System.out::println);
+	}
+
+	
+
+	@Override
+	public void searchPersonByState(String firstname) {
+		List listPerson = (List) personList.stream()
+				.filter(person1 -> person1.getFirstName().equalsIgnoreCase(firstname)).collect(Collectors.toList());
+		personList.stream().forEach(System.out::println);
+	}
+
+	@Override
+	public void viewByCity(String city) {
+		Collection<Person> list;
+		List people = (List) personList.stream().filter(person1 -> person1.getFirstName().equalsIgnoreCase(city))
+				.collect(Collectors.toList());
+
+		for (Person person : personList) {
+			System.out.println(person);
+		}
+	}
+
+
+
+	@Override
+	public void searchPersonInCity(String firstName) {
+		Collection<Person> list;
+		List people = (List) personList.stream().filter(person1 -> person1.getFirstName().equalsIgnoreCase(firstName))
+				.collect(Collectors.toList());
+
+		for (Person person : personList) {
+			System.out.println(person.getFirstName() + "---->" + person.getCity());
+		}
+	}
+
 }
