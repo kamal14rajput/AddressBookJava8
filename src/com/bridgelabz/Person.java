@@ -6,11 +6,11 @@ public class Person {
 	public String address;
 	public String city;
 	public String state;
-	public long mobileNo;
-	public int zip;
+	public String mobileNo;
+	public String zip;
 
-	public Person(String firstName, String lastName, String address, String city, String state, long mobileNo,
-			int zip) {
+	public Person(String firstName, String lastName, String address, String city, String state, String mobileNo,
+			String zip) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -60,19 +60,19 @@ public class Person {
 		this.state = state;
 	}
 
-	public int getPincode() {
+	public String getPincode() {
 		return zip;
 	}
 
-	public void setPincode(int zip) {
+	public void setPincode(String zip) {
 		this.zip = zip;
 	}
 
-	public long getMobileNo() {
+	public String getMobileNo() {
 		return mobileNo;
 	}
 
-	public void setMobileNo(long mobileNo) {
+	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
 
