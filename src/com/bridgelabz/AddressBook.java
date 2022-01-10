@@ -1,12 +1,15 @@
 package com.bridgelabz;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AddressBook implements IAddressBook {
 	Scanner scanner = new Scanner(System.in);
-	ArrayList<Person> personList = new ArrayList<Person>();
-
+	public ArrayList<Person> personList = new ArrayList<Person>();
+	Map<String, Person> hashmap = new HashMap<>();
+	
 	public void add() {
 		System.out.println("Enter your first name");
 		String firstName = scanner.nextLine();
@@ -69,7 +72,7 @@ public class AddressBook implements IAddressBook {
 					personList.get(i).setMobileNo(scanner.next());
 					break;
 				case 8:
-					System.out.println("Enter new email");
+					System.out.println("Enter new pin");
 					personList.get(i).setPincode(scanner.next());
 					break;
 				default:
@@ -105,6 +108,18 @@ public class AddressBook implements IAddressBook {
 					+ "Adress:" + person.getAddress() + "\n" + "City:" + person.getCity() + "\n" + "State:"
 					+ person.getCity() + "\n" + "Phone-Number:" + person.getMobileNo() + "\n" + "Pin-code:"
 					+ person.getPincode());
+		}
+	}
+	public void duplicateCheck(String firstName) {
+		for (int k = 0; k < personList.size(); k++) {
+			String contactName = personList.get(k).firstName;
+
+			if (firstName.equals(contactName)) {
+				System.out.println("This Person is Already Present");
+			} else {
+				System.out.println("You can Add this Person");
+				break;
+			}
 		}
 	}
 }
