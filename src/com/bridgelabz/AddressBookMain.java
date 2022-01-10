@@ -29,6 +29,9 @@ public class AddressBookMain {
 				String name = scanner.nextLine();
 				adressBookImplementation.delete(name);
 				break;
+			case 5:
+				adressBookImplementation.addMultiplePerson();
+				break;
 			default:
 				System.out.println("Invalid Input");
 			}
