@@ -7,7 +7,6 @@ public class AddressBook implements IAddressBook {
 	Scanner scanner = new Scanner(System.in);
 	ArrayList<Person> personList = new ArrayList<Person>();
 
-	@Override
 	public void add() {
 		System.out.println("Enter your first name");
 		String firstName = scanner.nextLine();
@@ -91,6 +90,14 @@ public class AddressBook implements IAddressBook {
 		}
 	}
 
+	public void addMultiplePerson() {
+		System.out.println("Enter a person Name:");
+		String firstName = scanner.nextLine();
+		for (int i = 0; i < personList.size(); i++) {
+			Person person = personList.get(i);
+		}
+	}
+
 	public void display() {
 		for (int i = 0; i < personList.size(); i++) {
 			Person person = personList.get(i);
@@ -100,5 +107,4 @@ public class AddressBook implements IAddressBook {
 					+ person.getPincode());
 		}
 	}
-
 }
