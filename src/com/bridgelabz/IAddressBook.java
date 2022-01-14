@@ -5,20 +5,8 @@ public interface IAddressBook {
 
 	void display();
 
-	void edit(String firstName);
+	void edit();
 
-	void delete(String firstName);
+	void delete();
 
-	void addMultiplePerson();
-	
-	void duplicateCheck(String firstName);
-
-
-	void searchPersonByName(String firstname);
-
-	void searchPersonByState(String firstname);
-
-	void viewByCity(String city);
-
-	void searchPersonInCity(String firstName);
 }
