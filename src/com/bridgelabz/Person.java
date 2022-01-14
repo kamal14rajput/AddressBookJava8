@@ -1,29 +1,18 @@
 package com.bridgelabz;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Person {
-	public String firstName;
-	public String lastName;
-	public String address;
-	public String city;
-	public String state;
-	public String mobileNo;
-	public String zip;
+	private String firstName;
+    private String lastName;
+    private String address;
+    private String city;
+    private String state;
+    private String email;
+    private String zipcode;
+    private String phoneNumber;
 
-	public Person(String firstName, String lastName, String address, String city, String state, String mobileNo,
-			String zip) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.mobileNo = mobileNo;
-		this.zip = zip;
-	}
-	public Person(String name, List<Person> personList) {
-		
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -64,26 +53,62 @@ public class Person {
 	public void setState(String state) {
 		this.state = state;
 	}
+	
+	public String getEmail() {
+        return email;
+    }
 
-	public String getPincode() {
-		return zip;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setPincode(String zip) {
-		this.zip = zip;
-	}
+    public String getZipcode() {
+        return zipcode;
+    }
 
-	public String getMobileNo() {
-		return mobileNo;
-	}
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
 
-	public void setMobileNo(String mobileNo) {
-		this.mobileNo = mobileNo;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonInfo{" + "firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city=" + city + ", state=" + state + ", email=" + email + ", zipcode=" + zipcode + ", phoneNumber=" + phoneNumber + '}';
+    }
+	
 	@Override
-	public String toString() {
-		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city=" + city
-				+ ", state=" + state + ", pincode=" + zip + ", mobileNo=" + mobileNo + "]" + "\n";
-	}
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.firstName);
+        hash = 29 * hash + Objects.hashCode(this.lastName);
+        return hash;
+    }
+	
+	@Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Person other = (Person) obj;
+        if (!Objects.equals(this.firstName, other.firstName)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastName, other.lastName)) {
+            return false;
+        }
+        return true;
+    }
 }
