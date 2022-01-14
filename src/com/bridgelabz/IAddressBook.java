@@ -10,6 +10,9 @@ public interface IAddressBook {
 	void delete(String firstName);
 
 	void addMultiplePerson();
+	
+	void duplicateCheck(String firstName);
+
 
 	void searchPersonByName(String firstname);
 
