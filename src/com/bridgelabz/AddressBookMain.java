@@ -14,7 +14,7 @@ public class AddressBookMain {
 			Scanner scanner = new Scanner(System.in);
 			System.out.println(
 					"1.add" + "\n" + "2.Display" + "\n" + "3.Edit" + "\n" + "4.Delete" + "\n" + "5.Add MultiplePerson"
-							+ "\n" + "6.SearchByName" + "\n" + "7.SearchByState" + "\n" + "8.viewByCity" + "\n" + "SearchPersonInCity");
+							+ "\n" + "6.SearchByName" + "\n" + "7.SearchByState" + "\n" + "8.viewByCity" + "\n" + "9.SearchPersonInCity");
 			Scanner option = new Scanner(System.in);
 
 			switch (option.nextInt()) {
@@ -59,7 +59,7 @@ public class AddressBookMain {
 				adressBookImplementation.searchPersonInCity(name1);
 				break;
 			default:
-				System.out.println();
+				System.out.println("Invalid Entry");
 			}
 		}
 	}
